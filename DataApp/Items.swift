@@ -20,19 +20,26 @@ class ICEViewController: UITableViewController{
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let newCell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath)
-        newCell.textLabel?.text = "Placeholder Data Here"
+        
+        let cellInfo = ds.persons[indexPath.row]
+        
+        newCell.textLabel?.text = "\(cellInfo.NewName) \(cellInfo.NewAge)"
         return newCell
 
     }
 }
 
 class person {
-    var name: String
-    var age: Int
+    var NewName: String
+    var NewAge: Int
     
     init(NewName: String, NewAge: Int){
-        name = NewName
-        age = NewAge
+        self.NewName = NewName
+        self.NewAge = NewAge
+    }
+    
+    convenience init(){
+        self.init(NewName: "[Unnamed]", NewAge: 1)
     }
 }
 
@@ -46,7 +53,8 @@ class DataStore {
     persons = [person1, person2, person3]
     }
     
-    class newCustomCell: UITableViewCell{
-        
-    }
+}
+
+class newCustomCell: UITableViewCell{
+    
 }
